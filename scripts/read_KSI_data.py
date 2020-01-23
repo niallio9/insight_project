@@ -13,35 +13,43 @@ import pandas as pd
 from collections import OrderedDict
 
 # Importing the dataset
-dataset = pd.read_csv('collisions_events.csv', sep=';')
-data_top = dataset.head()
-data_times = dataset.iloc[:1000, 2]
-data_street_type = dataset.iloc[:, 5]
-data_road_class = dataset.iloc[:, 17]
-data_visibilty = dataset.iloc[:, 18]
-data_lat = dataset.iloc[:, -1]
-data_lon = dataset.iloc[:, -2]
+df = pd.read_csv('collisions_events.csv', sep=';')
+df_top = df.head()
+wanted_columns = ['collision_id', 'collision_date', 'collision_time','longitude',
+                  'latitude', 'street_1', 'street_type_1','road_class',
+                  'visibility', 'collision_type','impact_type',
+                  'light', 'road_surface_cond']
+df = df[wanted_columns]
 
-# subset data by lat/lon
-bbox = [43.673214, 43.629795, -79.313880, -79.467897] # from looking at google maps. N S E W
-dataset = dataset[(dataset.longitude >= bbox[3]) & (dataset.longitude <= bbox[2])]
-dataset = dataset[(dataset.latitude >= bbox[1]) & (dataset.latitude <= bbox[0])]
+# remove dodgy data
+df = df.dropna(axis='rows', how='any', thresh=None, subset=None, inplace=False)
+df = df[df.longitude != 0]
+df = df[df.latitude != 0]
+df = df[df.visibility != 'OTHER']
+df = df[df.light != 'OTHER']
+df = df[df.impact_type != 'OTHER']
+df = df[df.road_surface_cond != 'OTHER']
+df = df[df.road_surface_cond != 'OTHER']
+df = df[df.road_surface_cond != '222']
+df = df[df.road_surface_cond != 'PENDING']
+
+# Set up timestamps
+df_top = df.head()
+df['collision_time'] = df['collision_time'].apply(lambda x: '{0:0>4}'.format(x)).astype(str)
+df['collision_time'] = df['collision_date'] + " " + df['collision_time'].str[0:2] + ":" + df['collision_time'].str[2:4]
+df['collision_time'] = pd.to_datetime(df['collision_time'])
+del df['collision_date']
+df['year'] = pd.DatetimeIndex(df['collision_time']).year
+df['month'] = pd.DatetimeIndex(df['collision_time']).month
+df['day_of_week'] = df.collision_time.dt.dayofweek
+
+# Save the cleaned data to a csv
+df.to_csv('collision_events_clean.csv', index=False)
+
+## subset data by lat/lon
+#bbox = [43.703214, 43.629795, -79.303880, -79.477897] # from looking at google maps N S E W
+#df1 = df[(df.longitude >= bbox[3]) & (df.longitude <= bbox[2])]
+#df1 = df[(df.latitude >= bbox[1]) & (df.latitude <= bbox[0])]
 
 
-
-isanan = data_visibilty.isna()
-
-
-
-vis = list(OrderedDict.fromkeys(data_visibilty))
-vis1 = list(dict.fromkeys(data_visibilty))
-
-
-
-X = dataset.iloc[:, [2, 3]].values
-y = dataset.iloc[:, 4].values
-
-
-
-plt.scatter(data_lon, data_lat)
-plt.show()
+#impact_type_unique = list(dict.fromkeys(data_impact_type))
