@@ -57,7 +57,7 @@ df_synthetic = pd.read_csv(output, header=None)
 df_synthetic.iloc[:,df.columns.get_loc('collision')] = 0
 df_synthetic_top = df_synthetic.head()
 df_synthetic.to_csv('/Users/niall/insight_project/data/cleaned/collision_events_synthetic_with_roads.csv', index=False)
-df_new = pd.read_csv('/Users/niall/insight_project/data/cleaned/collision_events_synthetic.csv',names=df.columns)
+#df_new = pd.read_csv('/Users/niall/insight_project/data/cleaned/collision_events_synthetic.csv',names=df.columns)
 
 #df = df.append(df_synthetic, ignore_index=True)
 #df.to_csv('/Users/niall/insight_project/data/cleaned/collision_events_clean_with_roads_and_synthetic.csv', index=False)
