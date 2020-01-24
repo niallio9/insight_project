@@ -10,10 +10,10 @@ Created on Thu Jan 16 14:30:45 2020
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from collections import OrderedDict
+#from collections import OrderedDict
 
 # Importing the dataset
-df = pd.read_csv('collisions_events.csv', sep=';')
+df = pd.read_csv('/Users/niall/insight_project/data/raw/collisions_events.csv', sep=';')
 df_top = df.head()
 wanted_columns = ['collision_id', 'collision_date', 'collision_time','longitude',
                   'latitude', 'street_1', 'street_type_1','road_class',
@@ -32,6 +32,7 @@ df = df[df.road_surface_cond != 'OTHER']
 df = df[df.road_surface_cond != 'OTHER']
 df = df[df.road_surface_cond != '222']
 df = df[df.road_surface_cond != 'PENDING']
+df.reset_index()
 
 # Set up timestamps
 df_top = df.head()
@@ -42,9 +43,11 @@ del df['collision_date']
 df['year'] = pd.DatetimeIndex(df['collision_time']).year
 df['month'] = pd.DatetimeIndex(df['collision_time']).month
 df['day_of_week'] = df.collision_time.dt.dayofweek
+df['hour_of_day'] = df.collision_time.dt.hour
+df['collision'] = 1
 
 # Save the cleaned data to a csv
-df.to_csv('collision_events_clean.csv', index=False)
+df.to_csv('/Users/niall/insight_project/data/cleaned/collision_events_clean.csv', index=False)
 
 ## subset data by lat/lon
 #bbox = [43.703214, 43.629795, -79.303880, -79.477897] # from looking at google maps N S E W
