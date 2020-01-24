@@ -29,9 +29,9 @@ df = df[df.visibility != 'OTHER']
 df = df[df.light != 'OTHER']
 df = df[df.impact_type != 'OTHER']
 df = df[df.road_surface_cond != 'OTHER']
-df = df[df.road_surface_cond != 'OTHER']
 df = df[df.road_surface_cond != '222']
 df = df[df.road_surface_cond != 'PENDING']
+df = df[df.road_surface_class != '222']
 df.reset_index()
 
 # Set up timestamps
@@ -44,10 +44,12 @@ df['year'] = pd.DatetimeIndex(df['collision_time']).year
 df['month'] = pd.DatetimeIndex(df['collision_time']).month
 df['day_of_week'] = df.collision_time.dt.dayofweek
 df['hour_of_day'] = df.collision_time.dt.hour
-df['collision'] = 1
+df['collision'] = 1 # This is the label for the data
 
 # Save the cleaned data to a csv
 df.to_csv('/Users/niall/insight_project/data/cleaned/collision_events_clean.csv', index=False)
+
+## END
 
 ## subset data by lat/lon
 #bbox = [43.703214, 43.629795, -79.303880, -79.477897] # from looking at google maps N S E W
