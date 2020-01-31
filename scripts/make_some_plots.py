@@ -10,10 +10,46 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-df = pd.read_csv('/Users/niall/insight_project/data/cleaned/collision_events_clean_with_roads.csv')
-df = df[df['collision_count'] > 100]
+df = pd.read_csv('/Users/niall/insight_project/data/cleaned/collision_events_with_roads_and_weather_clean.csv')
+df = df[df['collision_count'] > 50]
 
 df = df.reset_index(drop=True)
+
+
+plt.figure()
+plt.scatter(df['longitude'], df['latitude'], s=2, c='r')
+plt.title('Toronto collisions by location')
+plt.xlabel('longitude')
+plt.ylabel('latitude')
+plt.show()
+
+plt.figure()
+plt.hist(df['windSpeed'], bins=50)
+plt.title('collisions by wind speed')
+plt.xlabel('wind speed [mph]')
+plt.ylabel('collision count')
+plt.show()
+
+plt.figure()
+plt.hist(df['windGust'], bins=50)
+plt.title('collisions by wind gust')
+plt.xlabel('wind gust [mph]')
+plt.ylabel('collision count')
+plt.show()
+
+plt.figure()
+plt.hist(df['windBearing'], bins=50)
+plt.title('collisions by wind bearing')
+plt.xlabel('bearing [degrees clockwise from north]')
+plt.ylabel('collision count')
+plt.show()
+
+plt.figure()
+plt.hist(df['temperature'], bins=100)
+plt.title('collisions by temperature')
+plt.xlabel('temperature [C]')
+plt.ylabel('collision count')
+plt.show()
 
 plt.figure()
 plt.hist(df['hour_of_day'], bins=24)

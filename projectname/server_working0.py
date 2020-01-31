@@ -21,17 +21,9 @@ def recommendation_output():
                                   my_input = some_input1,
                                   my_form_result="Empty")
        else:
-           # get the weather data
-           # add the weather data to the unique roads
-           # run the unique roads through the classifier
-           # load the map data
-           # plot the map with the road colours from the classifier
-           # add in the route using the lats and lons from the user
-           # save the graph as the name used by the return statement below
-           
            some_output="yeay!"
            some_number=0
-           some_image="map_with_routes_new.png"
+           some_image="map_10am_jan.png"
            return render_template("index.html",
                               my_input=some_input1,
                               my_output=some_output,

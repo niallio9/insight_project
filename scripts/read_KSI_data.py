@@ -31,7 +31,7 @@ df = df[df.impact_type != 'OTHER']
 df = df[df.road_surface_cond != 'OTHER']
 df = df[df.road_surface_cond != '222']
 df = df[df.road_surface_cond != 'PENDING']
-df = df[df.road_class != '222']
+df = df[df.road_surface_class != '222']
 df.reset_index()
 
 # Set up timestamps

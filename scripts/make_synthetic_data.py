@@ -14,12 +14,13 @@ from csv import writer
 
 # Read in the coliision_and_road data and subset by
 df = pd.read_csv('/Users/niall/insight_project/data/cleaned/collision_events_clean_with_roads.csv')
-min_collision_count = 50
+min_collision_count = 20
 df = df[df['collision_count'] > min_collision_count]
 df = df.reset_index(drop=True)
+df.to_csv('/Users/niall/insight_project/data/cleaned/collision_events_clean_with_roads_20plus_collisions.csv', index=False)
 
 # for randomly changing the road, thesea are the values
-fixed_columns = ['collision_id', 'collision_time', 'longitude', 'latitude', 'street_1',
+fixed_road_features = ['collision_id', 'collision_time', 'longitude', 'latitude', 'street_1',
        'street_type_1', 'road_class','u', 'v', 'key', 'osmid', 'name',
        'highway', 'maxspeed', 'oneway', 'length', 'geometry', 'lanes']
 i_fixed_road_features = [df.columns.get_loc(col) for col in fixed_road_features]
@@ -27,12 +28,6 @@ original_length = len(df.iloc[:,1])
 output = StringIO()
 csv_writer = writer(output)
 
-
-
-df.loc[:,fixed_columns].sample(n=df.shape[0],random_state =31).reset_index().drop('index',axis=1)
-
-
-df.head(3)
 # It semms like looping with pandas sucks. It's a bit faster writing synthetic data
 # to a csv and reading it back in after.
 for i in range(original_length):
@@ -46,8 +41,8 @@ for i in range(original_length):
         #modify some parameters of the row
         row[i_fixed_road_features] = random_row[i_fixed_road_features]
         #change the road segment and it's parameters
-        #if not (df == row).all(1).any():
-        csv_writer.writerow(row)
+        if not (df == row).all(1).any():
+            csv_writer.writerow(row)
 output.seek(0) # we need to get back to the start of the BytesIO
 df_synthetic = pd.read_csv(output, header=None)
 
