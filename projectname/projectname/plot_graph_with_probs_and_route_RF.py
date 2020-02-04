@@ -25,7 +25,7 @@ df['weights'] = df['collision_yn'] * 100000
 
 nearest_nodes = ox.get_nearest_nodes(G, lats, lons, method=None)
 
-#add colour to the edges that
+#add colour to the edges that have a crash risk
 nodes, edges = ox.graph_to_gdfs(G)
 edges = edges.merge(df, on=['u', 'v'], how='left')
 edges.colour[edges.colour.isna()] = 'grey'

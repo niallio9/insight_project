@@ -12,7 +12,7 @@ import pickle
 
 
 # read in the model
-model = pickle.load(open("/Users/niall/insight_project/projectname/projectname/model_RF.sav","rb"))
+model = pickle.load(open("/Users/niall/insight_project/data/processed/model_RF_weather.sav","rb"))
 
 #read in the roads
 df = pd.read_csv('/Users/niall/insight_project/data/cleaned/collision_events_clean_with_roads.csv')
@@ -20,7 +20,7 @@ df = df[df['collision_count'] > 50]
 unique_roads = df.drop_duplicates(subset=['u', 'v'], keep='first') # get the unique roads
 
 # read in the feature transformer
-preprocessor1 = pickle.load(open("/Users/niall/insight_project/projectname/projectname/feature_encoder_RF.sav","rb"))
+preprocessor1 = pickle.load(open("/Users/niall/insight_project/data/processed/feature_encoder_RF_weather.sav","rb"))
 
 ##read in the unique road data
 #unique_roads = pickle.load(open('/Users/niall/insight_project/data/cleaned/unique_roads.p',"rb"))
@@ -28,10 +28,15 @@ preprocessor1 = pickle.load(open("/Users/niall/insight_project/projectname/proje
 
 features = ['longitude', 'latitude',
        'road_class', 'visibility', 'light', 'road_surface_cond', 'month',
-       'day_of_week', 'hour_of_day','collision_count']
-
+       'day_of_week', 'hour_of_day','collision_count','summary', 'icon', 'temperature',
+       'apparentTemperature', 'dewPoint', 'humidity', 'windSpeed', 'windGust',
+       'windBearing', 'cloudCover', 'uvIndex', 'visibility.1']
+features_num = ['longitude', 'latitude', 'collision_count', 'temperature',
+       'apparentTemperature', 'dewPoint', 'humidity', 'windSpeed', 'windGust',
+       'windBearing', 'cloudCover', 'uvIndex', 'visibility.1']
 features_cat = ['road_class', 'visibility', 'light',
-                'road_surface_cond', 'month', 'day_of_week', 'hour_of_day']
+                'road_surface_cond', 'month', 'day_of_week', 'hour_of_day',
+                'summary', 'icon']
 
 X1 = unique_roads.copy()
 

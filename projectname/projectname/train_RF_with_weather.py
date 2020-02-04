@@ -26,10 +26,10 @@ features = ['longitude', 'latitude',
        'road_class', 'visibility', 'light', 'road_surface_cond', 'month',
        'day_of_week', 'hour_of_day','collision_count','summary', 'icon', 'temperature',
        'apparentTemperature', 'dewPoint', 'humidity', 'windSpeed', 'windGust',
-       'windBearing', 'cloudCover', 'uvIndex']
+       'windBearing', 'cloudCover', 'uvIndex', 'visibility.1']
 features_num = ['longitude', 'latitude', 'collision_count', 'temperature',
        'apparentTemperature', 'dewPoint', 'humidity', 'windSpeed', 'windGust',
-       'windBearing', 'cloudCover', 'uvIndex']
+       'windBearing', 'cloudCover', 'uvIndex', 'visibility.1']
 features_cat = ['road_class', 'visibility', 'light',
                 'road_surface_cond', 'month', 'day_of_week', 'hour_of_day',
                 'summary', 'icon']
@@ -62,13 +62,13 @@ cm = confusion_matrix(y_test, y_pred)
 score = classifier.score( X_test, y_test)
 
 # save the model to disk
-filename = '/Users/niall/insight_project/projectname/projectname/model_RF_weather.sav'
+filename = '/Users/niall/insight_project/data/processed/model_RF_weather.sav'
 pickle.dump(classifier, open(filename, 'wb'))
-filename_transformer = '/Users/niall/insight_project/projectname/projectname/feature_encoder_RF_weather.sav'
+filename_transformer = '/Users/niall/insight_project/data/processed/feature_encoder_RF_weather.sav'
 pickle.dump(preprocessor, open(filename_transformer, 'wb'))
 
 # feature importance
-preprocessor.fit(X[features_cat])
+#preprocessor.fit(X[features_cat])
 x = list(preprocessor.transformers_[0][1].get_feature_names(features_cat))
 for name in features_num:
     x.append(name)
@@ -81,7 +81,7 @@ x = [x[i] for i in indices]
 # Print the feature ranking
 print("Feature ranking:")
 for f in range(len(x)):
-    print("%d. feature %s (%f)" % (f + 1, x[indices[f]], importances[indices[f]]))
+    print("%d. feature %s (%f)" % (f + 1, x[f], importances[indices[f]]))
 
 # plot fetures
 # Plot the feature importances of the forest

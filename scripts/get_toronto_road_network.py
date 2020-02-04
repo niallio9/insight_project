@@ -45,7 +45,7 @@ merged_df.to_csv('/Users/niall/insight_project/data/cleaned/collision_events_cle
 
 
 ox.save_graphml(G, filename='/Users/niall/insight_project/data/cleaned/Toronto.graphml')
-#G = ox.load_graphml('/Users/niall/insight_project/data/cleaned/Toronto.graphml')
+G = ox.load_graphml('/Users/niall/insight_project/data/cleaned/Toronto.graphml')
 
 #END
 
@@ -61,5 +61,5 @@ ox.save_graphml(G, filename='/Users/niall/insight_project/data/cleaned/Toronto.g
 #
 
 #
-#fig, ax = ox.plot_graph(G)
+#fig, ax = ox.plot_graph(G, node_size=0)
 #fig, ax = ox.plot.plot_graph_route(G, [ nearest_edges_unique[18,:]])
