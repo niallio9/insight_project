@@ -49,7 +49,7 @@ route_by_weight = nx.shortest_path(G, source=nearest_nodes[0], target=nearest_no
 route_by_length = nx.shortest_path(G, source=nearest_nodes[0], target=nearest_nodes[1], weight='length')
 routes = [route_by_weight, route_by_length]
 # create route colors
-rc1 = ['green'] * (len(route_by_weight) - 1)
+rc1 = ['green'] * (len(route_by_weight))
 rc2 = ['blue'] * len(route_by_length)
 route_colours = rc1 + rc2
 
