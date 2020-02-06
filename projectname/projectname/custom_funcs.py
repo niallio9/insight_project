@@ -79,7 +79,7 @@ def plot_map_with_probs_routes(unique_roads_with_weather, origin=[43.663389, -79
     lats = [origin[1], destination[1]]
     lons = [origin[0], destination[0]]
     #load the 
-    G = ox.load_graphml('/Users/niall/insight_project/data/cleaned/Toronto.graphml')
+    G = ox.load_graphml('/Users/niall/insight_project/data/cleaned/Toronto_large.graphml')
     df_roads = pd.read_csv('/Users/niall/insight_project/data/processed/unique_roads_collision_yn_RF_weather.csv')
     df_roads = df_roads[['u', 'v', 'collision_yn']]
     df_roads['colour'] = 'red'
@@ -115,7 +115,7 @@ def plot_map_with_probs_routes(unique_roads_with_weather, origin=[43.663389, -79
     filename_save = filename
     fig, ax = ox.plot_graph_routes(G, routes, node_size=0, route_color=route_colours,
                                    orig_dest_node_color='green', edge_color=edges.colour, 
-                                   fig_height=12, fig_width=12, margin=0, axis_off=False,
+                                   fig_height=8.8, fig_width=12, margin=0, axis_off=True,
                                    show=False, save=True, file_format='png',
                                    filename=filename_save)
     return

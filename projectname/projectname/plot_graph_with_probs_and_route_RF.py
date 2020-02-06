@@ -9,6 +9,7 @@ Created on Mon Jan 27 19:26:13 2020
 import osmnx as ox
 import pandas as pd
 import networkx as nx
+import matplotlib.pyplot as plt
 
 #origin = [43.681641, -79.423906]
 origin = [43.663389, -79.461929]
@@ -21,7 +22,7 @@ lons = [origin[0], destination[0]]
 G = ox.load_graphml('/Users/niall/insight_project/data/cleaned/Toronto.graphml')
 df = pd.read_csv('/Users/niall/insight_project/data/processed/unique_roads_collision_yn_RF.csv')
 df = df[['u', 'v', 'collision_yn']]
-df['colour'] = 'grey'
+df['colour'] = 'red'
 df['weights'] = df['collision_yn'] * 100000
 
 nearest_nodes = ox.get_nearest_nodes(G, lats, lons, method=None)
@@ -60,14 +61,17 @@ fig, ax = ox.plot_graph_routes(G, routes, node_size=0, route_color=route_colours
                                fig_height=12, fig_width=12, margin=0, axis_off=False,
                                show=True, save=True, file_format='png',
                                filename=filename_save)
+
 routes = route_by_length
 route_colours = rc2
-fig, ax = ox.plot_graph_route(G, routes, node_size=0, route_color=route_colours,
-                               orig_dest_node_color='green', edge_color=edges.colour, 
-                               fig_height=12, fig_width=12, margin=0, axis_off=False,
-                               show=True, save=True, file_format='png',
-                               filename=filename_save)
+#fig, ax = ox.plot_graph_route(G, routes, node_size=0, route_color=route_colours,
+#                               orig_dest_node_color='green', edge_color=edges.colour, 
+#                               fig_height=12, fig_width=12, margin=0, axis_off=False,
+#                               show=True, save=True, file_format='png',
+#                               filename=filename_save)
 
+y = ox.geocode('22, epsom avenue, toronto')
+ox.plot_route_folium(G, routes, route_map=None, popup_attribute=None, tiles='cartodbpositron', zoom=1, fit_bounds=True, route_color='#cc0000', route_width=5, route_opacity=1)
 #fig.savefig('/Users/niall/insight_project/data/map_output/map_with_routes.png')
-
+plt.show()
 #END

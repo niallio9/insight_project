@@ -5,12 +5,13 @@ import custom_funcs as CF
 import os
 from datetime import datetime as dt
 import glob
-
+import osmnx as ox
+import networkx as nx
 
 
 # Create the application object
 app = Flask(__name__)
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
+#app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 
 @app.route('/',methods=["GET","POST"]) #we are now using these methods to get user input
 def home_page():
@@ -26,17 +27,30 @@ def recommendation_output():
        input1 =request.args.get('user_input1')            
        input2 =request.args.get('user_input2')            
        print(input1)
+       origin = []
+       destination = []
+       try:
+           origin = list(ox.geocode(input1))
+           destination = list(ox.geocode(input2))
+       except:
+               pass
        
        # Case if empty
        if input1 =="" or input2 =="":
            return render_template("index.html",
                                   my_input = input1,
                                   my_form_result="Empty")
+       elif not origin:
+           return render_template("index.html",
+                                  my_input = input1,
+                                  my_form_result="Empty_origin")
+       elif not destination:
+           return render_template("index.html",
+                                  my_input = input2,
+                                  my_form_result="Empty_destination")
        else:
-           input1= input1.split(',')
-           input2= input2.split(',')
-           origin = [float(input1[0]), float(input1[1])]
-           destination = [float(input2[0]), float(input2[1])]
+#           origin = list(ox.geocode(input1))
+#           destination = list(ox.geocode(input2))
            # get the weather data
            current_weather = CF.get_current_weather_toronto()
            # add the weather data to the unique roads

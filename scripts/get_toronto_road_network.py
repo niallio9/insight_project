@@ -13,7 +13,7 @@ import pandas as pd
 matplotlib.use( 'tkagg' )
 
 #Set map bounds
-bbox = [43.703214, 43.629795, -79.303880, -79.477897] # NSEW from looking at google maps
+bbox = [43.72, 43.629795, -79.303880, -79.477897] # NSEW from looking at google maps
 
 # Get map from collision coordinates
 df = pd.read_csv('/Users/niall/insight_project/data/cleaned/collision_events_clean.csv')
@@ -49,7 +49,7 @@ G = ox.load_graphml('/Users/niall/insight_project/data/cleaned/Toronto.graphml')
 
 #END
 
-
+x = list(ox.geocode('253 merton st, toronto'))
 
 #df_top = df.head()
 #df_merged_top = merged_df.head()

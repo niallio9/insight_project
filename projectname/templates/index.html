@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>RouteSafe</title>
+  <title>SafeRoute</title>
 
   <!-- Custom fonts for this theme -->
   <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -26,10 +26,6 @@
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">SafeRoute</a>
-      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           </li>
@@ -41,20 +37,6 @@
     <!-- Masthead -->
   <header class="masthead bg-primary text-white text-center">
     <div class="container d-flex align-items-center flex-column">
-
-
-      <!-- Masthead Heading -->
-      <h1 class="masthead-heading mb-0">It's SafeRoute!</h1>
-
-      <!-- Icon Divider -->
-      <div class="divider-custom divider-light">
-        <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon">
-          <i class="fas fa-star"></i>
-        </div>
-        <div class="divider-custom-line"></div>
-      </div>
-
     </div>
   </header>
   
@@ -64,10 +46,10 @@
         <h2 class="text-center text-white">Enter the details of your trip</h2>
               <div class="col-sm m-3 text-center">
                     <form action="/output" method="GET" id="user_input">
-                          <label>Starting point</label>
-                          <input class="form-control" type="text" id="user_input" name='user_input1' placeholder="latitude, longitude">
-                          <label>Destination point</label>
-                          <input class="form-control" type="text" id="user_input" name='user_input2' placeholder="latitude, longitude">
+                          <label>Starting address</label>
+                          <input class="form-control" type="text" id="user_input" name='user_input1' placeholder="e.g., 80 Eglinton Avenue West, Toronto">
+                          <label>Destination address</label>
+                          <input class="form-control" type="text" id="user_input" name='user_input2' placeholder="e.g., 20 Adelaide St East, Toronto">
                     </form>
               </div>
        <div class="row justify-content-center">
@@ -78,14 +60,27 @@
       <div class="row mt-4 justify-content-center">
             <h4 class="text-danger text-center text-uppercase">Please enter the start and end points of your trip</h4>
       </div>
+      
+      {% elif my_form_result=='Empty_origin' %}
+      <div class="row mt-4 justify-content-center">
+            <h4 class="text-danger text-center text-uppercase">Could not find a location for your entered starting address.</h4>
+            <h4 class="text-danger text-center text-uppercase">Please check it.</h4>
+      </div>
+      
+      {% elif my_form_result=='Empty_destination' %}
+      <div class="row mt-4 justify-content-center">
+            <h4 class="text-danger text-center text-uppercase">Could not find a location for your entered destination address.</h4>
+            <h4 class="text-danger text-center text-uppercase">Please check it.</h4>
+      </div>
 
       {% elif my_form_result=='NotEmpty' %}     
-
       <div class="row mt-4 justify-content-center">
-            <h4 class="text-light text-center text-uppercase">Here's your map</h4>
+            <h6 class="text-light text-center">The SAFEST route is shown in <font color="GREEN">GREEN</font>. The shortest route is shown in <font color="BLUE">BLUE</font>. High risk road segments are marked in <font color="RED">RED</font>.</h6>
+      </div>
+      <div class="row mt-4 justify-content-center">
+            <h7 class="text text-center">SafeRoute is currently designed for the Toronto City Core, and shows you the best route for the portion of your trip in the map area below.</h7>
       </div>
       <div class="row p-1 m-1 justify-content-center">
-
             <div class="col">
             <img class="img-fluid" src="{{ url_for('static', filename = my_img_name) }}">
             </div>      
@@ -99,7 +94,7 @@
   <!-- Copyright Section -->
   <section class="copyright py-4 text-center text-white">
     <div class="container">
-      <small>Copyright &copy; Your Website 2019</small>
+      <small>Copyright &copy; Niall J Ryan 2020</small>
     </div>
   </section>
 
