@@ -61,5 +61,5 @@ G = ox.load_graphml('/Users/niall/insight_project/data/cleaned/Toronto.graphml')
 #
 
 #
-#fig, ax = ox.plot_graph(G, node_size=0)
+fig, ax = ox.plot_graph(G, node_size=0, fig_height=12, fig_width=12, margin=0, axis_off=False)
 #fig, ax = ox.plot.plot_graph_route(G, [ nearest_edges_unique[18,:]])

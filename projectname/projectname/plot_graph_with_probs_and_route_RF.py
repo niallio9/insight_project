@@ -10,7 +10,8 @@ import osmnx as ox
 import pandas as pd
 import networkx as nx
 
-origin = [43.681641, -79.423906]
+#origin = [43.681641, -79.423906]
+origin = [43.663389, -79.461929]
 destination = [43.650854, -79.377587]
 #origin = [43.6949, -79.453]
 #destination = [43.6966, -79.4453]
@@ -20,7 +21,7 @@ lons = [origin[0], destination[0]]
 G = ox.load_graphml('/Users/niall/insight_project/data/cleaned/Toronto.graphml')
 df = pd.read_csv('/Users/niall/insight_project/data/processed/unique_roads_collision_yn_RF.csv')
 df = df[['u', 'v', 'collision_yn']]
-df['colour'] = 'red'
+df['colour'] = 'grey'
 df['weights'] = df['collision_yn'] * 100000
 
 nearest_nodes = ox.get_nearest_nodes(G, lats, lons, method=None)
@@ -55,6 +56,13 @@ route_colours = rc1 + rc2
 
 filename_save = '/Users/niall/insight_project/projectname/static/map_with_routes'
 fig, ax = ox.plot_graph_routes(G, routes, node_size=0, route_color=route_colours,
+                               orig_dest_node_color='green', edge_color=edges.colour, 
+                               fig_height=12, fig_width=12, margin=0, axis_off=False,
+                               show=True, save=True, file_format='png',
+                               filename=filename_save)
+routes = route_by_length
+route_colours = rc2
+fig, ax = ox.plot_graph_route(G, routes, node_size=0, route_color=route_colours,
                                orig_dest_node_color='green', edge_color=edges.colour, 
                                fig_height=12, fig_width=12, margin=0, axis_off=False,
                                show=True, save=True, file_format='png',

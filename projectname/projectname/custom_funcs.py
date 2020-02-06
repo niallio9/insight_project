@@ -71,7 +71,9 @@ def get_collision_probs(unique_roads_with_weather):
     unique_roads_with_weather.to_csv('/Users/niall/insight_project/data/processed/unique_roads_collision_yn_RF_weather.csv', index=False)
     return unique_roads_with_weather
 
-def plot_map_with_probs_routes(origin, destination): # each input is a list with [lat, lon]
+def plot_map_with_probs_routes(unique_roads_with_weather, origin=[43.663389, -79.461929],
+                               destination=[43.650854, -79.377587],
+                               filename='/Users/niall/insight_project/projectname/static/map_with_routes_for_web'): # each input is a list with [lat, lon]
     #origin = [43.6949, -79.453]
     #destination = [43.6966, -79.4453]
     lats = [origin[1], destination[1]]
@@ -110,10 +112,11 @@ def plot_map_with_probs_routes(origin, destination): # each input is a list with
     rc2 = ['blue'] * len(route_by_length)
     route_colours = rc1 + rc2
     # save the figure as a png
-    filename_save = '/Users/niall/insight_project/projectname/static/map_with_routes_for_web'
+    filename_save = filename
     fig, ax = ox.plot_graph_routes(G, routes, node_size=0, route_color=route_colours,
                                    orig_dest_node_color='green', edge_color=edges.colour, 
                                    fig_height=12, fig_width=12, margin=0, axis_off=False,
-                                   show=True, save=True, file_format='png',
+                                   show=False, save=True, file_format='png',
                                    filename=filename_save)
+    return
 
