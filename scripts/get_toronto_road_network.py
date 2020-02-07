@@ -44,12 +44,16 @@ merged_df = merged_df[list(merged_df)[:29]] #these columns are empty
 merged_df.to_csv('/Users/niall/insight_project/data/cleaned/collision_events_clean_with_roads.csv', index=False)
 
 
-ox.save_graphml(G, filename='/Users/niall/insight_project/data/cleaned/Toronto.graphml')
+ox.save_graphml(G, filename='/Users/niall/insight_project/data/cleaned/Toronto_large.graphml')
 G = ox.load_graphml('/Users/niall/insight_project/data/cleaned/Toronto.graphml')
 
 #END
 
-x = list(ox.geocode('253 merton st, toronto'))
+
+#try:
+#    x = list(ox.geocode('Insight, toronto'))
+#except:
+#    pass
 
 #df_top = df.head()
 #df_merged_top = merged_df.head()
@@ -61,5 +65,5 @@ x = list(ox.geocode('253 merton st, toronto'))
 #
 
 #
-fig, ax = ox.plot_graph(G, node_size=0, fig_height=12, fig_width=12, margin=0, axis_off=False)
+#fig, ax = ox.plot_graph(G, node_size=0, fig_height=12, fig_width=12, margin=0, axis_off=False)
 #fig, ax = ox.plot.plot_graph_route(G, [ nearest_edges_unique[18,:]])
