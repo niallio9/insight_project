@@ -34,5 +34,5 @@ The output file is called 'custom_functions_test_output.png', and is saved to a 
 
 ## Acknowledgments
 
-* All my friends and the cool people at Insight Data Science who gave great feedbackon the project. And Jag and Cado :)
+* All my friends and the cool people at Insight Data Science who gave great feedback on the project. And Jag and Cado :)
 
