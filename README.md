@@ -1,10 +1,8 @@
 # SafeRoute
 
-SafeRoute is a tool that enables drivers to make proactive decisions to lower their risk of being in a collision while on the roads in Toronto.
+SafeRoute is a tool that enables drivers to make proactive decisions to lower their risk of being in a collision while on the roads in Toronto. A live web application for the City of Toronto can be found at http://nialler.pythonanywhere.com/.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+The html templates and server file are included in this repository for reference to help anyone to implement a similar web application.
 
 ### Prerequisites
 
@@ -16,75 +14,25 @@ flask (to implement a web application)
 
 Dark Sky API: get a free API key at https://darksky.net/dev
 
-### Installing
+### Running the tests
 
-A step by step series of examples that tell you how to get a development env running
+The main functions for running the app are located in 'custom_funcs.py'.
 
-Say what the step will be
+To test that these functions run correctly with the neccesary packages, use a testing function in '/saferoute/saferoute/'.
+Make sure to change the path to your local directory in 'custom_funcs.py'
 
-```
-Give the example
-```
-
-And repeat
+From a terminal in the above directory run:
 
 ```
-until finished
+python test_custom_funcs.py
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+This should produce a .png file with the shortest and safest routes plotted on a road map of Toronto.
+The origin and destination are defaults.
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+The output file is called 'custom_functions_test_output.png', and is saved to a folder named 'images'.
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* All my friends and the cool people at Insight Data Science who gave great feedbackon the project. And Jag and Cado :)
 
