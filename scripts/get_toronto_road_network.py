@@ -4,11 +4,15 @@
 Created on Mon Jan 20 12:10:57 2020
 
 @author: niall
+
+A script to get the road map data from OpenMaps and convert it to a graph network object.
+The current bounding box for the map is user-defined (by me) for the city of toronto.
+It is large enough to contain both my and Cathal's address.
 """
 import osmnx as ox
 import matplotlib
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import pandas as pd
 matplotlib.use( 'tkagg' )
 

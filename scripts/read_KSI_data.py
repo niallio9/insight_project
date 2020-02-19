@@ -7,8 +7,8 @@ Created on Thu Jan 16 14:30:45 2020
 """
 
 # Importing the libraries
-import numpy as np
-import matplotlib.pyplot as plt
+#import numpy as np
+#import matplotlib.pyplot as plt
 import pandas as pd
 #from collections import OrderedDict
 
@@ -22,6 +22,7 @@ wanted_columns = ['collision_id', 'collision_date', 'collision_time','longitude'
 df = df[wanted_columns]
 
 # remove dodgy data
+# ther number of dodgy data is ~1% of the total data, so a simple remove is acceptable in this case
 df = df.dropna(axis='rows', how='any', thresh=None, subset=None, inplace=False)
 df = df[df.longitude != 0]
 df = df[df.latitude != 0]
@@ -50,11 +51,3 @@ df['collision'] = 1 # This is the label for the data
 df.to_csv('/Users/niall/insight_project/data/cleaned/collision_events_clean.csv', index=False)
 
 ## END
-
-## subset data by lat/lon
-#bbox = [43.703214, 43.629795, -79.303880, -79.477897] # from looking at google maps N S E W
-#df1 = df[(df.longitude >= bbox[3]) & (df.longitude <= bbox[2])]
-#df1 = df[(df.latitude >= bbox[1]) & (df.latitude <= bbox[0])]
-
-
-#impact_type_unique = list(dict.fromkeys(data_impact_type))

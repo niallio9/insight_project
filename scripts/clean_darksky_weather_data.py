@@ -4,15 +4,18 @@
 Created on Tue Jan 21 14:37:08 2020
 
 @author: niall
+
+The Dark Sky historical weather data has some missing values.
+Fortunately, they are not values we are interested in.
+Unfortunately, the structure of the csv is altered due to the missing data.
+The target data is in a section of each row, the location of which may change
+if there is missing data.
 """
 import pandas as pd
 import numpy as np
 
-
 df = pd.read_csv('/Users/niall/insight_project/data/raw/weather_darksky.csv')
-#df = df.head(1000)
 
-#
 irows, icolumns = np.where(df.iloc[:,6:] > 800) # find the location of the pressure values in the 6th column onwards
 icolumns = icolumns + 6 # adjust the real index
 real_pressure_column = 11 # the column where the pressure value should be

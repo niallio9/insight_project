@@ -4,9 +4,13 @@
 Created on Fri Jan 24 02:24:23 2020
 
 @author: niall
+
+A basic script for making deom plots.
+
+To Do: make individual functions for easier plotting from outside of an IDE
 """
 
-import numpy as np
+#import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 

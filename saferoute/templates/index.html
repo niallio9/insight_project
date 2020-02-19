@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SafeRoute</title>
+
+  <!-- Custom fonts for this theme -->
+  <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="static/css/freelancer.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">SafeRoute</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+    <!-- Masthead -->
+  <header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+    </div>
+  </header>
+  
+  <!-- Try Section -->
+    <section class="bg-primary mb-0" id="try">
+      <div class="container">
+        <h2 class="text-center text-white">Enter the details of your trip</h2>
+              <div class="col-sm m-3 text-center">
+                    <form action="/output" method="GET" id="user_input">
+                          <label>Starting address</label>
+                          <input class="form-control" type="text" id="user_input" name='user_input1' placeholder="e.g., 80 Eglinton Avenue West, Toronto">
+                          <label>Destination address</label>
+                          <input class="form-control" type="text" id="user_input" name='user_input2' placeholder="e.g., 20 Adelaide St East, Toronto">
+                    </form>
+              </div>
+       <div class="row justify-content-center">
+             <button type="submit" class="btn btn-secondary btn-lg" form="user_input">Map my route!</button>
+      </div>
+      
+      {% if my_form_result=='Empty' %}
+      <div class="row mt-4 justify-content-center">
+            <h4 class="text-danger text-center text-uppercase">Please enter the start and end points of your trip</h4>
+      </div>
+      
+      {% elif my_form_result=='Empty_origin' %}
+      <div class="row mt-4 justify-content-center">
+            <h4 class="text-danger text-center text-uppercase">Could not find a location for your entered starting address.</h4>
+            <h4 class="text-danger text-center text-uppercase">Please check it.</h4>
+      </div>
+      
+      {% elif my_form_result=='Empty_destination' %}
+      <div class="row mt-4 justify-content-center">
+            <h4 class="text-danger text-center text-uppercase">Could not find a location for your entered destination address.</h4>
+            <h4 class="text-danger text-center text-uppercase">Please check it.</h4>
+      </div>
+
+      {% elif my_form_result=='NotEmpty' %}     
+      <div class="row mt-4 justify-content-center">
+            <h6 class="text-light text-center">The SAFEST route is shown in <font color="GREEN">GREEN</font>. The shortest route is shown in <font color="BLUE">BLUE</font>. High risk road segments are marked in <font color="RED">RED</font>.</h6>
+      </div>
+      <div class="row mt-4 justify-content-center">
+            <h7 class="text text-center">SafeRoute is currently designed for the Toronto City Core, and shows you the best route for the portion of your trip in the map area below.</h7>
+      </div>
+      <div class="row p-1 m-1 justify-content-center">
+            <div class="col">
+            <img class="img-fluid" src="{{ url_for('static', filename = my_img_name) }}">
+            </div>      
+      </div>
+
+      {% else %}
+      {% endif %}      
+      </div>
+    </section>
+
+  <!-- Copyright Section -->
+  <section class="copyright py-4 text-center text-white">
+    <div class="container">
+      <small>Copyright &copy; Niall J Ryan 2020</small>
+    </div>
+  </section>
+
+  <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+  <div class="scroll-to-top d-lg-none position-fixed ">
+    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="static/vendor/jquery/jquery.min.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Contact Form JavaScript -->
+  <script src="static/js/jqBootstrapValidation.js"></script>
+  <script src="static/js/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="static/js/freelancer.min.js"></script>
+
+</body>
+
+</html>

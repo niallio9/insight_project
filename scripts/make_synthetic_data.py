@@ -4,6 +4,9 @@
 Created on Thu Jan 23 09:47:47 2020
 
 @author: niall
+
+A script for generating synthetic data. The basis is an undersampling of all
+available no-collision data points over the time range of the collision data.
 """
 
 import numpy as np
@@ -34,7 +37,7 @@ for i in range(original_length):
     for j in range(1):
         i_random_row = randrange(original_length) # get random row index for later
         random_row = df.iloc[i_random_row,:]
-        while i_random_row == i:
+        while i_random_row == i: # make sure the synthetic row does not already exist in the true data
             i_random_row = randrange(original_length) # get random row index for later
             random_row = df.iloc[i_random_row,:]
         row = df.iloc[i,:] # the row to alter
