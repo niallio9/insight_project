@@ -13,11 +13,23 @@ To Do: make individual functions for easier plotting from outside of an IDE
 #import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import osmnx as ox
 
 df = pd.read_csv('/Users/niall/insight_project/data/cleaned/collision_events_with_roads_and_weather_clean.csv')
 df = df[df['collision_count'] > 50]
-
 df = df.reset_index(drop=True)
+dftop = df.head()
+
+G = ox.load_graphml('/Users/niall/insight_project/data/cleaned/Toronto_large.graphml')
+nodes, edges = ox.graph_to_gdfs(G)
+
+plt.figure()
+plt.hist(edges['length'], bins = 50)
+plt.title('Length of Toronto street segments')
+plt.xlabel('road count')
+plt.ylabel('length [m]')
+plt.show()
+
 
 
 plt.figure()
@@ -115,7 +127,6 @@ df['light'].value_counts().plot(kind='bar')
 plt.title('collisions by light')
 plt.ylabel('collision count')
 plt.show()
-
 
 list(dict.fromkeys(df['road_surface_cond']))
 list(dict.fromkeys(df['road_class']))

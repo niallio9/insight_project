@@ -16,7 +16,7 @@ import networkx as nx
 local_path = '/Users/niall/insight_project'
 
 def get_current_weather_toronto():
-    api_key = 'be5915f53fd9d45fd540944f2182476b'
+    api_key = 'xxxxxxxxxxxxxxxx' # THIS SHOULD BE REPLACED WITH YOUR API KEY FROM DARK SKY API
     TORONTO = api_key, 43.6529, -79.3849
     toronto = forecast(*TORONTO) # the call to the Dark Sky API
     data_current = toronto.currently._data
