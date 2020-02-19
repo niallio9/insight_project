@@ -1,6 +1,6 @@
-# Project Title
+# SafeRoute
 
-One Paragraph of project description goes here
+SafeRoute is a tool that enables drivers to make proactive decisions to lower their risk of being in a collision while on the roads in Toronto.
 
 ## Getting Started
 
@@ -8,11 +8,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+osmnx: https://github.com/gboeing/osmnx
 
-```
-Give examples
-```
+scikit-learn
+
+flask (to implement a web application)
+
+Dark Sky API: get a free API key at https://darksky.net/dev
 
 ### Installing
 
