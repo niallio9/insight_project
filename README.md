@@ -25,13 +25,13 @@ The html templates and server file are included in this repository for reference
 
 ### Prerequisites
 
-osmnx: https://github.com/gboeing/osmnx
+- osmnx: https://github.com/gboeing/osmnx
 
-scikit-learn
+- scikit-learn
 
-flask (to implement a web application)
+- flask (to implement a web application)
 
-Dark Sky API: get a free API key at https://darksky.net/dev
+- Dark Sky API: get a free API key at https://darksky.net/dev
 
 ### Running the tests
 
