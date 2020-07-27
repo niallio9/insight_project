@@ -1,3 +1,5 @@
+![SafeRoute Image](/images/title_page.png)
+
 # SafeRoute
 
 SafeRoute is a tool that enables drivers to make proactive decisions to lower their risk of being in a collision while on the roads in Toronto. A live web application for navigation in the city of Toronto can be found at http://nialler.pythonanywhere.com/.
