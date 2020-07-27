@@ -2,7 +2,7 @@
 
 # SafeRoute
 
-SafeRoute is a tool that enables drivers to make proactive decisions to lower their risk of being in a collision while on the roads in Toronto. A live web application for navigation in the city of Toronto can be found at http://nialler.pythonanywhere.com/.
+SafeRoute is a tool that enables drivers to make proactive decisions to lower their risk of being in a collision while on the roads in Toronto. A live web application for navigation in the city of Toronto can be found at http://nialler.pythonanywhere.com/. (Webpage is currently not in operation. Find a snapshot pf the webpage below :))
 
 
 SafeRoute combines vehicle collsion data from the Toronto Police Department, with map information from OpenStreetMap, and weather inforamtion from Dark Sky API.
@@ -18,6 +18,8 @@ The web application (link above) uses this trained model in a navigation applica
 3. Classify each street segment using the street network and weather information as input to the model.
 4. Calculate two routes within the street (graph) network, according to "shortest route" and "safest route".
 5. Plot these routes on a map for the user.
+
+![Webpage Image](/images/wepage_layout.png)
 
 The html templates and server file are included in this repository for reference to help anyone to implement a similar web application.
 
