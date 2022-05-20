@@ -16,7 +16,7 @@ import numpy as np
 
 df = pd.read_csv('/Users/niall/insight_project/data/raw/weather_darksky.csv')
 
-irows, icolumns = np.where(df.iloc[:,6:] > 800) # find the location of the pressure values in the 6th column onwards
+irows, icolumns = np.where(df.iloc[:,6:] > 800) # find the location of the pressure values in the 6th column onwards. pressure is the only field with values that large
 icolumns = icolumns + 6 # adjust the real index
 real_pressure_column = 11 # the column where the pressure value should be
 
